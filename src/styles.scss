@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/colors.scss';
+
+$primary: colors.$main-purple;
+
+* {
+    font-family: 'Operator Mono';
+    background-color: black;
+    color: white;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
