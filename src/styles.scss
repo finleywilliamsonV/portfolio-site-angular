@@ -1,12 +1,16 @@
 @use './styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&display=swap');
 
 $primary: colors.$main-purple;
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
 * {
-    font-family: 'Operator Mono';
-    background-color: black;
+    font-family: 'Montserrat';
     color: white;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+body {
+    background: black;
+}
