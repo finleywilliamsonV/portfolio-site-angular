@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { PortfolioComponent } from './components/portfolio/portfolio.component'
 import { AboutMeComponent } from './components/about-me/about-me.component'
 import { PageTitleComponent } from './components/page-title/page-title.component'
+import { ProjectCardComponent } from './components/portfolio/project-card/project-card.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     NavBarComponent,
     PortfolioComponent,
     AboutMeComponent,
-    PageTitleComponent
+    PageTitleComponent,
+    ProjectCardComponent
   ],
   imports: [
     BrowserModule,

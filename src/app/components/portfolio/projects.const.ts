@@ -1,0 +1,72 @@
+export type Project = {
+    title: string,
+    tags: string[],
+    description: string,
+    images: string[],
+    linkText: string,
+    link: string,
+    githubLink: string
+}
+
+export const Projects: Record<string, Project> = {
+    lorem: {
+        title: 'Lorem Ipsum Generator',
+        tags: ['Node', 'Express', 'MongoDB', 'Pug'],
+        description: 'Generate Lorem Ipsum text in a variety of styles. This site uses Express for routing, MongoDB for data used in generation, Pug for a views engine, and Bootstrap for styling.',
+        images: ['../img/LoremIpsum3x2.png'],
+        linkText: 'Live Site',
+        link: '/lorem',
+        githubLink: 'https://github.com/finleywilliamsonV/lorem-express',
+    },
+    todo: {
+        title: 'ToDo List',
+        tags: ['Node'],
+        description: 'A simple to-do list. I use vanilla JS for routing and views handling, store & retrieve user list data in local storage, and use Bootstrap for styling.',
+        images: ['../img/ToDoList3x2.png'],
+        linkText: 'Live Site',
+        link: '/todo',
+        githubLink: 'https://github.com/finleywilliamsonV/To-Do-VanillaJS',
+    },
+    weather: {
+        title: 'Real-Time Weather',
+        tags: ['Node', 'React', 'Parcel'],
+        description: 'Displays a 7-day weather forecast for any location. Uses OpenCage Geocoder and DarkSky Weather APIs. Application state managed with React, bundled with Parcel.',
+        images: ['../img/Weather3x2-cropped.png'],
+        linkText: 'Live Site',
+        link: '/weather/',
+        githubLink: 'https://github.com/finleywilliamsonV/real-time-weather',
+    },
+    emoji: {
+        title: 'Emojis in Space',
+        tags: ['AS3'],
+        description: 'A retro-themed, top-down shooter. Help Clyde Panther battle against a raucous horde of emojis and save the galaxy! My first commercial game. Download free on iOS and Google Play.',
+        images: [
+            '../img/EmojisInSpace/eis1.png',
+            '../img/EmojisInSpace/eis2.png',
+            '../img/EmojisInSpace/eis3.png',
+            '../img/EmojisInSpace/eis4.png',
+            '../img/EmojisInSpace/eis5.png',
+            '../img/EmojisInSpace/eis6.png',
+            '../img/EmojisInSpace/eis7.png',
+            '../img/EmojisInSpace/eis8.png',
+        ],
+        linkText: 'Visit Site',
+        link: 'http://emojisin.space',
+        githubLink: 'https://github.com/finleywilliamsonV/EmojisInSpace',
+    },
+    dungeon: {
+        title: 'Dungeon Masters',
+        tags: ['AS3'],
+        description: 'Build your own dungeon, fill it with monsters, and defend against endless waves of adventurers. Implements a D&D style combat system.',
+        images: [
+            '../img/DungeonMasters/dm1.png',
+            '../img/DungeonMasters/dm2.png',
+            '../img/DungeonMasters/dm3.png',
+            '../img/DungeonMasters/dm4.png',
+            '../img/DungeonMasters/dm5.png',
+        ],
+        linkText: 'Coming Soon',
+        link: '',
+        githubLink: 'https://github.com/finleywilliamsonV/DungeonMasters',
+    },
+}
