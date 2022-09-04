@@ -1,1 +1,7 @@
 <app-page-title title="Portfolio"></app-page-title>
+
+<div class="row">
+    <div *ngFor="let project of projects" class="col-4 vertical-padding">
+        <app-project-thumbnail [project]="project"></app-project-thumbnail>
+    </div>
+</div>

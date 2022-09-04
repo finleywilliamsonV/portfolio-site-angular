@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { Project, ProjectData } from './projects.const'
 
 @Component({
     selector: 'app-portfolio',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core'
     styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent {
+
+    projects: Project[] = ProjectData
 
     constructor() { }
 }

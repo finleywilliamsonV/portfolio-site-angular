@@ -11,6 +11,7 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component'
 import { AboutMeComponent } from './components/about-me/about-me.component'
 import { PageTitleComponent } from './components/page-title/page-title.component'
 import { ProjectCardComponent } from './components/portfolio/project-card/project-card.component'
+import { ProjectThumbnailComponent } from './components/portfolio/project-thumbnail/project-thumbnail.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProjectCardComponent } from './components/portfolio/project-card/projec
     PortfolioComponent,
     AboutMeComponent,
     PageTitleComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    ProjectThumbnailComponent
   ],
   imports: [
     BrowserModule,
