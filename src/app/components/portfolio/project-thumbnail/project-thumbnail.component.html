@@ -1,3 +1,11 @@
-<div class="container-fluid p-0">
-    <img class="project-image" [src]="project.thumbnailImage">
+<div class="card">
+    <img
+        class="img-fluid"
+        [src]="project.thumbnailImage">
+
+    <div class="overlay">
+        <div class="overlay-text">
+            {{project.title}}
+        </div>
+    </div>
 </div>
