@@ -9,6 +9,7 @@ const routes: Routes = [
     { path: 'home', component: WelcomePageComponent },
     { path: 'portfolio', component: PortfolioComponent },
     { path: 'about-me', component: AboutMeComponent },
+    { path: '**', redirectTo: '/home'}
 ]
 
 @NgModule({

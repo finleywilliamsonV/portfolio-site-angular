@@ -5,7 +5,7 @@ export type Project = {
     thumbnailImage: string,
     additionalImages?: string[],
     linkText: string,
-    link?: string,
+    url?: string,
     githubLink: string
 }
 
@@ -16,7 +16,7 @@ export const ProjectData: Project[] = [
         description: 'Generate Lorem Ipsum text in a variety of styles. This site uses Express for routing, MongoDB for data used in generation, Pug for a views engine, and Bootstrap for styling.',
         thumbnailImage: 'assets/images/LoremIpsum3x2.png',
         linkText: 'Live Site',
-        link: '/lorem',
+        url: '/lorem',
         githubLink: 'https://github.com/finleywilliamsonV/lorem-express',
     },
     {
@@ -25,7 +25,7 @@ export const ProjectData: Project[] = [
         description: 'A simple to-do list. I use vanilla JS for routing and views handling, store & retrieve user list data in local storage, and use Bootstrap for styling.',
         thumbnailImage: 'assets/images/ToDoList3x2.png',
         linkText: 'Live Site',
-        link: '/todo',
+        url: '/todo',
         githubLink: 'https://github.com/finleywilliamsonV/To-Do-VanillaJS',
     },
     {
@@ -34,13 +34,13 @@ export const ProjectData: Project[] = [
         description: 'Displays a 7-day weather forecast for any location. Uses OpenCage Geocoder and DarkSky Weather APIs. Application state managed with React, bundled with Parcel.',
         thumbnailImage: 'assets/images/Weather3x2-cropped.png',
         linkText: 'Live Site',
-        link: '/weather/',
+        url: '/weather/',
         githubLink: 'https://github.com/finleywilliamsonV/real-time-weather',
     },
     {
         title: 'Emojis in Space',
         tags: ['ActionScript3'],
-        description: 'A retro-themed, top-down shooter. Help Clyde Panther battle against a raucous horde of emojis and save the galaxy! My first commercial game. Download free on iOS and Google Play.',
+        description: 'A retro-themed, top-down shooter. Help Clyde Panther battle against a raucous horde of emojis and save the galaxy! My first commercial game. Previously on iOS and Google Play, currently unavailable.',
         thumbnailImage: 'assets/images/emojis-in-space/EmojisInSpace3x2.png',
         additionalImages: [
             'assets/images/emojis-in-space/eis1.png',
@@ -53,7 +53,7 @@ export const ProjectData: Project[] = [
             'assets/images/emojis-in-space/eis8.png',
         ],
         linkText: 'Visit Site',
-        link: 'http://emojisin.space',
+        url: 'http://emojisin.space',
         githubLink: 'https://github.com/finleywilliamsonV/EmojisInSpace',
     },
     {
@@ -68,7 +68,7 @@ export const ProjectData: Project[] = [
             'assets/images/dungeon-masters/dm4.png',
             'assets/images/dungeon-masters/dm5.png',
         ],
-        linkText: 'Coming Soon',
+        linkText: 'Not Deployed',
         githubLink: 'https://github.com/finleywilliamsonV/DungeonMasters',
     },
 ]

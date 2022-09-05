@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http'
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core'
+import { Router } from '@angular/router'
 import { faGithub, IconDefinition } from '@fortawesome/free-brands-svg-icons'
-import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap'
+import { NgbActiveModal, NgbCarousel, NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { Project } from '../projects.const'
 
 @Component({
@@ -11,9 +13,10 @@ import { Project } from '../projects.const'
 export class ProjectCardComponent implements AfterViewInit {
 
     private _project!: Project
-
     imageUrls: string[] = []
     githubIcon: IconDefinition = faGithub
+
+    @ViewChild(NgbCarousel) carouselComponent!: NgbCarousel
 
     @Input()
     set project(newProject: Project) {
@@ -24,15 +27,21 @@ export class ProjectCardComponent implements AfterViewInit {
         return this._project
     }
 
-    @ViewChild(NgbCarousel) carouselComponent!: NgbCarousel
-
-    constructor() { }
+    constructor(
+        private modalInstance: NgbActiveModal,
+        private router: Router,
+    ) { }
 
     ngAfterViewInit(): void {
         if (this.imageUrls.length <= 1) {
             this.carouselComponent.showNavigationArrows = false
             this.carouselComponent.showNavigationIndicators = false
         }
+    }
+
+    navigateToProjectUrl(): void {
+        this.modalInstance.close()
+        this.project.url && this.router.navigateByUrl(this.project.url)
     }
 
 }

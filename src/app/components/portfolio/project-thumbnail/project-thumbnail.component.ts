@@ -15,7 +15,6 @@ export class ProjectThumbnailComponent {
     constructor(private modalService: NgbModal) { }
 
     launchModal(): void {
-        console.log('launching modal')
         const modalRef = this.modalService.open(ProjectCardComponent, {
             size: 'xl',
             centered: true,

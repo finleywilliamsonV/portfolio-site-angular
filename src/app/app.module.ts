@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -12,6 +13,7 @@ import { AboutMeComponent } from './components/about-me/about-me.component'
 import { PageTitleComponent } from './components/page-title/page-title.component'
 import { ProjectCardComponent } from './components/portfolio/project-card/project-card.component'
 import { ProjectThumbnailComponent } from './components/portfolio/project-thumbnail/project-thumbnail.component'
+import { IconFadeOnHoverDirective } from './directives/icon-fade-on-hover.directive'
 
 @NgModule({
     declarations: [
@@ -22,13 +24,15 @@ import { ProjectThumbnailComponent } from './components/portfolio/project-thumbn
         AboutMeComponent,
         PageTitleComponent,
         ProjectCardComponent,
-        ProjectThumbnailComponent
+        ProjectThumbnailComponent,
+        IconFadeOnHoverDirective
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         NgbModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
