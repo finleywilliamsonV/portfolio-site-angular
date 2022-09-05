@@ -5,7 +5,7 @@ export type Project = {
     thumbnailImage: string,
     additionalImages?: string[],
     linkText: string,
-    link: string,
+    link?: string,
     githubLink: string
 }
 
@@ -39,7 +39,7 @@ export const ProjectData: Project[] = [
     },
     {
         title: 'Emojis in Space',
-        tags: ['AS3'],
+        tags: ['ActionScript3'],
         description: 'A retro-themed, top-down shooter. Help Clyde Panther battle against a raucous horde of emojis and save the galaxy! My first commercial game. Download free on iOS and Google Play.',
         thumbnailImage: 'assets/images/emojis-in-space/EmojisInSpace3x2.png',
         additionalImages: [
@@ -58,7 +58,7 @@ export const ProjectData: Project[] = [
     },
     {
         title: 'Dungeon Masters',
-        tags: ['AS3'],
+        tags: ['ActionScript3'],
         description: 'Build your own dungeon, fill it with monsters, and defend against endless waves of adventurers. Implements a D&D style combat system.',
         thumbnailImage: 'assets/images/dungeon-masters/DungeonMasters3x2.png',
         additionalImages: [
@@ -69,7 +69,6 @@ export const ProjectData: Project[] = [
             'assets/images/dungeon-masters/dm5.png',
         ],
         linkText: 'Coming Soon',
-        link: '',
         githubLink: 'https://github.com/finleywilliamsonV/DungeonMasters',
     },
 ]

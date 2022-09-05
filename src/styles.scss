@@ -1,10 +1,21 @@
 @use './styles/colors.scss';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;800&display=swap');
 
 $primary: colors.$main-purple;
 
+.xxl-modal {
+    width: 80% !important;
+    max-width: 80% !important;
+}
+
+.fill-height {
+    height: 100%;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+/* Adding these after Bootstrap import so they overwrite default bootstrap styles */
 
 * {
     font-family: 'Montserrat';

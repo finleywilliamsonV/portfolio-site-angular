@@ -10,6 +10,6 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 })
 export class NavBarComponent {
 
-    gitHubIcon: IconDefinition = faGithub
+    githubIcon: IconDefinition = faGithub
     emailIcon: IconDefinition = faEnvelope
 }

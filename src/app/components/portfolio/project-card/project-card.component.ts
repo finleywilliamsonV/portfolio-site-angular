@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core'
+import { faGithub, IconDefinition } from '@fortawesome/free-brands-svg-icons'
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap'
 import { Project } from '../projects.const'
 
@@ -12,8 +13,9 @@ export class ProjectCardComponent implements AfterViewInit {
     private _project!: Project
 
     imageUrls: string[] = []
+    githubIcon: IconDefinition = faGithub
 
-    @Input() 
+    @Input()
     set project(newProject: Project) {
         this._project = newProject
         this.imageUrls = newProject.additionalImages || [newProject.thumbnailImage]
