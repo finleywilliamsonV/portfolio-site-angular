@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { ProjectCardComponent } from '../project-card/project-card.component'
 import { Project } from '../projects.const'
 
 @Component({
@@ -10,6 +12,16 @@ export class ProjectThumbnailComponent {
 
     @Input() project!: Project
 
-    constructor() { }
+    constructor(private modalService: NgbModal) { }
+
+    launchModal(): void {
+        console.log('launching modal')
+        const modalRef = this.modalService.open(ProjectCardComponent, {
+            size: 'xl',
+            centered: true
+        })
+        const component = modalRef.componentInstance as ProjectCardComponent
+        component.project = this.project
+    }
 
 }
