@@ -2,6 +2,25 @@ h3, h5, p, ul {
     color: white;
 }
 
-#email-link {
-    font-size: 20px;
+/* MEDIA QUERIES */
+
+@media (min-width: 0px) {
+    #about-me-text-div {
+        width: 600px;
+    }
+    #email-link {
+        font-size: 16px;
+    }
 }
+@media (min-width: 992px) {
+    #email-link {
+        font-size: 20px;
+    }
+}
+
+// @media (min-width: 1200px) {
+//     #title-card {
+//         width: 640px;
+//         font-size: 60px;
+//     }
+// }
