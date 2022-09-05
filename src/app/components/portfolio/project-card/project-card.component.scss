@@ -36,5 +36,10 @@ h1, p, fa-icon {
 
 #github-button {
     font-size: 23px;
+}
 
+@media (max-width: 992px) { 
+    #project-description {
+        margin-top: 24px;
+    }
 }

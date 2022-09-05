@@ -18,7 +18,6 @@ export class ProjectThumbnailComponent {
         const modalRef = this.modalService.open(ProjectCardComponent, {
             size: 'xl',
             centered: true,
-            modalDialogClass: 'xxl-modal'
         })
         const component = modalRef.componentInstance as ProjectCardComponent
         component.project = this.project
