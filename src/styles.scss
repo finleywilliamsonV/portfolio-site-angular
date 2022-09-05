@@ -18,7 +18,7 @@ $primary: colors.$main-purple;
 /* Adding these after Bootstrap import so they overwrite default bootstrap styles */
 
 * {
-    font-family: 'Montserrat';
+    font-family: Montserrat, Helvetica;
 }
 
 body {
