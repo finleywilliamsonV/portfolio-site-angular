@@ -11,6 +11,8 @@ img {
     position: absolute;
     background-color: #2b2d31;
     border-radius: 14px;
+    opacity: 0;
+    transition: 0.2s ease;
 }
 
 .card {
@@ -18,15 +20,7 @@ img {
     border-radius: 14px;
 }
 
-.project-card img {
-    transition: 0.2s ease;
-}
-
-.project-card:hover img {
-    opacity: 0;
-}
-
-.project-card:hover .overlay {
+.overlay:hover {
     opacity: 1;
 }
 

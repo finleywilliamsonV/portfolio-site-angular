@@ -14,23 +14,23 @@ import { ProjectCardComponent } from './components/portfolio/project-card/projec
 import { ProjectThumbnailComponent } from './components/portfolio/project-thumbnail/project-thumbnail.component'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WelcomePageComponent,
-    NavBarComponent,
-    PortfolioComponent,
-    AboutMeComponent,
-    PageTitleComponent,
-    ProjectCardComponent,
-    ProjectThumbnailComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FontAwesomeModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        WelcomePageComponent,
+        NavBarComponent,
+        PortfolioComponent,
+        AboutMeComponent,
+        PageTitleComponent,
+        ProjectCardComponent,
+        ProjectThumbnailComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        FontAwesomeModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
