@@ -1,5 +1,17 @@
-h1, p, fa-icon {
+h1,
+p,
+fa-icon {
     color: white;
+}
+
+#x-icon-row{
+    margin-top: -25px;
+}
+
+#x-icon {
+    position: relative;
+    left: 35px;
+    top: -10px;
 }
 
 .slideshow-image {
@@ -38,7 +50,7 @@ h1, p, fa-icon {
     font-size: 23px;
 }
 
-@media (max-width: 992px) { 
+@media (max-width: 992px) {
     #project-description {
         margin-top: 24px;
     }

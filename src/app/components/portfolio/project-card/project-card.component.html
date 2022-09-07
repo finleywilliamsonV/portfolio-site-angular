@@ -1,4 +1,17 @@
 <div class="card bg-dark p-5">
+
+    <div
+        *ngIf="isMobile"
+        id="x-icon-row"
+        class="row text-end">
+        <fa-icon
+            id="x-icon"
+            appIconFadeOnHover="#926eff"
+            [icon]="xIcon"
+            size="xl">
+        </fa-icon>
+    </div>
+
     <div class="row">
 
         <div class="col-12 col-lg-8 align-self-center justify-content-center">
@@ -15,7 +28,9 @@
             </ngb-carousel>
         </div>
 
-        <div id="project-description" class="col-12 col-lg-4 align-self-end">
+        <div
+            id="project-description"
+            class="col-12 col-lg-4 align-self-end">
 
             <h1 id="modal-title">{{ project.title }}</h1>
             <hr id="modal-hr">

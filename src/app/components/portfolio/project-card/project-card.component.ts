@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http'
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { faGithub, IconDefinition } from '@fortawesome/free-brands-svg-icons'
+import { faX } from '@fortawesome/free-solid-svg-icons'
 import { NgbActiveModal, NgbCarousel, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MobileDetectionService } from 'src/app/mobile-detection.service'
 import { Project } from '../projects.const'
 
 @Component({
@@ -14,7 +16,10 @@ export class ProjectCardComponent implements AfterViewInit {
 
     private _project!: Project
     imageUrls: string[] = []
+    isMobile: boolean = false
+
     githubIcon: IconDefinition = faGithub
+    xIcon: IconDefinition = faX
 
     @ViewChild(NgbCarousel) carouselComponent!: NgbCarousel
 
@@ -30,7 +35,10 @@ export class ProjectCardComponent implements AfterViewInit {
     constructor(
         private modalInstance: NgbActiveModal,
         private router: Router,
-    ) { }
+        private mobileDetectionService: MobileDetectionService
+    ) {
+        this.isMobile = mobileDetectionService.isMobile
+    }
 
     ngAfterViewInit(): void {
         if (this.imageUrls.length <= 1) {
