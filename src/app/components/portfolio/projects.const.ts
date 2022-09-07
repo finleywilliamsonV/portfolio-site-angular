@@ -15,8 +15,8 @@ export const ProjectData: Project[] = [
         tags: ['Node', 'Express', 'MongoDB', 'Pug'],
         description: 'Generate Lorem Ipsum text in a variety of styles. This site uses Express for routing, MongoDB for data used in generation, Pug for a views engine, and Bootstrap for styling.',
         thumbnailImage: 'assets/images/LoremIpsum3x2.png',
-        linkText: 'Live Site',
-        url: '/lorem',
+        linkText: 'Under Construction',
+        // url: '/lorem',
         githubLink: 'https://github.com/finleywilliamsonV/lorem-express',
     },
     {
@@ -24,8 +24,8 @@ export const ProjectData: Project[] = [
         tags: ['Node'],
         description: 'A simple to-do list. I use vanilla JS for routing and views handling, store & retrieve user list data in local storage, and use Bootstrap for styling.',
         thumbnailImage: 'assets/images/ToDoList3x2.png',
-        linkText: 'Live Site',
-        url: '/todo',
+        linkText: 'Under Construction',
+        // url: '/todo',
         githubLink: 'https://github.com/finleywilliamsonV/To-Do-VanillaJS',
     },
     {
@@ -33,8 +33,8 @@ export const ProjectData: Project[] = [
         tags: ['Node', 'React', 'Parcel'],
         description: 'Displays a 7-day weather forecast for any location. Uses OpenCage Geocoder and DarkSky Weather APIs. Application state managed with React, bundled with Parcel.',
         thumbnailImage: 'assets/images/Weather3x2-cropped.png',
-        linkText: 'Live Site',
-        url: '/weather/',
+        linkText: 'Under Construction',
+        // url: '/weather/',
         githubLink: 'https://github.com/finleywilliamsonV/real-time-weather',
     },
     {

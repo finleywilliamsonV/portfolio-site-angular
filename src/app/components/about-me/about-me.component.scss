@@ -2,15 +2,23 @@ h3, h5, p, ul {
     color: white;
 }
 
+#hey-text {
+    font-weight: bold;
+    font-style: italic;
+}
+
+#email-link {
+    font-size: 16px;
+    text-decoration: none;
+}
+
 /* MEDIA QUERIES */
 
 @media (min-width: 0px) {
     #about-me-text-div {
         width: 600px;
     }
-    #email-link {
-        font-size: 16px;
-    }
+    
 }
 @media (min-width: 992px) {
     #email-link {
