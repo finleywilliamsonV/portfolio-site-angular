@@ -52,4 +52,8 @@ export class ProjectCardComponent implements AfterViewInit {
         this.project.url && this.router.navigateByUrl(this.project.url)
     }
 
+    closeModal(): void {
+        this.modalInstance.close()
+    }
+
 }
