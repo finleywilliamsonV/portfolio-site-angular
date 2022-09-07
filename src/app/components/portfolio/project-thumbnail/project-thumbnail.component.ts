@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { MobileDetectionService } from 'src/app/mobile-detection.service'
 import { ProjectCardComponent } from '../project-card/project-card.component'
 import { Project } from '../projects.const'
 
@@ -11,8 +12,14 @@ import { Project } from '../projects.const'
 export class ProjectThumbnailComponent {
 
     @Input() project!: Project
+    isMobile: boolean = false
 
-    constructor(private modalService: NgbModal) { }
+    constructor(
+        private modalService: NgbModal,
+        private mobileDetectionService: MobileDetectionService
+    ) {
+        this.isMobile = mobileDetectionService.isMobile
+    }
 
     launchModal(): void {
         const modalRef = this.modalService.open(ProjectCardComponent, {
