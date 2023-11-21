@@ -1,12 +1,13 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
+import { OpenGraphService } from 'src/app/open-graph.service';
 
 @Component({
-    selector: 'app-about-me',
-    templateUrl: './about-me.component.html',
-    styleUrls: ['./about-me.component.scss']
+  selector: 'app-about-me',
+  templateUrl: './about-me.component.html',
+  styleUrls: ['./about-me.component.scss'],
 })
 export class AboutMeComponent {
-
-    constructor() { }
-
+  constructor(openGraphService: OpenGraphService) {
+    openGraphService.addMetaTags('about-me');
+  }
 }
