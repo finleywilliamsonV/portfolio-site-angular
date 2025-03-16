@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Meta } from '@angular/platform-browser'
 
-type Location = 'root' | 'about-me' | 'portfolio'
+type Location = 'root' | 'about-me' | 'portfolio' | 'fitness-tracker'
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,12 @@ export class OpenGraphService {
       this.meta.updateTag({
         name: 'og:description',
         content: 'Check out some of my projects!'
+      })
+    } else if (location === 'fitness-tracker') {
+      this.meta.updateTag({ name: 'og:title', content: 'Fitness Tracker' })
+      this.meta.updateTag({
+        name: 'og:description',
+        content: 'Track your fitness journey!'
       })
     }
   }
