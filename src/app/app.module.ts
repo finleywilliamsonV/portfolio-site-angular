@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-import { HttpClientModule } from '@angular/common/http'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -15,26 +15,19 @@ import { ProjectCardComponent } from './components/portfolio/project-card/projec
 import { ProjectThumbnailComponent } from './components/portfolio/project-thumbnail/project-thumbnail.component'
 import { IconFadeOnHoverDirective } from './directives/icon-fade-on-hover.directive'
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    WelcomePageComponent,
-    NavBarComponent,
-    PortfolioComponent,
-    AboutMeComponent,
-    PageTitleComponent,
-    ProjectCardComponent,
-    ProjectThumbnailComponent,
-    IconFadeOnHoverDirective
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FontAwesomeModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        WelcomePageComponent,
+        NavBarComponent,
+        PortfolioComponent,
+        AboutMeComponent,
+        PageTitleComponent,
+        ProjectCardComponent,
+        ProjectThumbnailComponent,
+        IconFadeOnHoverDirective
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        FontAwesomeModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
