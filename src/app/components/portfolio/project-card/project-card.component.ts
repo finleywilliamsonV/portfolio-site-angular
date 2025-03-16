@@ -1,14 +1,9 @@
-import { HttpClient } from '@angular/common/http'
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { faGithub, IconDefinition } from '@fortawesome/free-brands-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
-import {
-  NgbActiveModal,
-  NgbCarousel,
-  NgbModal
-} from '@ng-bootstrap/ng-bootstrap'
-import { MobileDetectionService } from 'src/app/mobile-detection.service'
+import { NgbActiveModal, NgbCarousel } from '@ng-bootstrap/ng-bootstrap'
+import isMobile from 'is-mobile'
 import { Project } from '../projects.const'
 
 @Component({
@@ -38,10 +33,9 @@ export class ProjectCardComponent implements AfterViewInit {
 
   constructor(
     private modalInstance: NgbActiveModal,
-    private router: Router,
-    private mobileDetectionService: MobileDetectionService
+    private router: Router
   ) {
-    this.isMobile = mobileDetectionService.isMobile
+    this.isMobile = isMobile()
   }
 
   ngAfterViewInit(): void {

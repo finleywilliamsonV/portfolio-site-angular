@@ -1,4 +1,5 @@
 @use './styles/colors.scss';
+@use 'bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;800&display=swap');
 
 $primary: colors.$main-purple;
@@ -6,9 +7,6 @@ $primary: colors.$main-purple;
 .fill-height {
   height: 100%;
 }
-
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
 
 /* Adding these after Bootstrap import so they overwrite default bootstrap styles */
 
