@@ -7,7 +7,8 @@ import {
 } from '@angular/core'
 
 @Directive({
-  selector: '[appIconFadeOnHover]'
+  selector: '[appIconFadeOnHover]',
+  standalone: false
 })
 export class IconFadeOnHoverDirective implements AfterViewInit {
   @Input() appIconFadeOnHover: string = '#fff'

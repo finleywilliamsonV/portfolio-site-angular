@@ -7,7 +7,8 @@ import { Project } from '../projects.const'
 @Component({
   selector: 'app-project-thumbnail',
   templateUrl: './project-thumbnail.component.html',
-  styleUrls: ['./project-thumbnail.component.scss']
+  styleUrls: ['./project-thumbnail.component.scss'],
+  standalone: false
 })
 export class ProjectThumbnailComponent {
   @Input() project!: Project

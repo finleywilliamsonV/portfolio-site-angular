@@ -6,7 +6,8 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
+  standalone: false
 })
 export class NavBarComponent {
   githubIcon: IconDefinition = faGithub

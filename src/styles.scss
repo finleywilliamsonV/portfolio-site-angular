@@ -8,7 +8,7 @@ $primary: colors.$main-purple;
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 /* Adding these after Bootstrap import so they overwrite default bootstrap styles */
 
