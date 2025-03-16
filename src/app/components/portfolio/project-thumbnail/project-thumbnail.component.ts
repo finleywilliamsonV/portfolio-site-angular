@@ -5,29 +5,27 @@ import { ProjectCardComponent } from '../project-card/project-card.component'
 import { Project } from '../projects.const'
 
 @Component({
-    selector: 'app-project-thumbnail',
-    templateUrl: './project-thumbnail.component.html',
-    styleUrls: ['./project-thumbnail.component.scss']
+  selector: 'app-project-thumbnail',
+  templateUrl: './project-thumbnail.component.html',
+  styleUrls: ['./project-thumbnail.component.scss']
 })
 export class ProjectThumbnailComponent {
+  @Input() project!: Project
+  isMobile: boolean = false
 
-    @Input() project!: Project
-    isMobile: boolean = false
+  constructor(
+    private modalService: NgbModal,
+    private mobileDetectionService: MobileDetectionService
+  ) {
+    this.isMobile = mobileDetectionService.isMobile
+  }
 
-    constructor(
-        private modalService: NgbModal,
-        private mobileDetectionService: MobileDetectionService
-    ) {
-        this.isMobile = mobileDetectionService.isMobile
-    }
-
-    launchModal(): void {
-        const modalRef = this.modalService.open(ProjectCardComponent, {
-            size: 'xl',
-            centered: true,
-        })
-        const component = modalRef.componentInstance as ProjectCardComponent
-        component.project = this.project
-    }
-
+  launchModal(): void {
+    const modalRef = this.modalService.open(ProjectCardComponent, {
+      size: 'xl',
+      centered: true
+    })
+    const component = modalRef.componentInstance as ProjectCardComponent
+    component.project = this.project
+  }
 }

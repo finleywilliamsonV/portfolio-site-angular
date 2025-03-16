@@ -16,25 +16,25 @@ import { ProjectThumbnailComponent } from './components/portfolio/project-thumbn
 import { IconFadeOnHoverDirective } from './directives/icon-fade-on-hover.directive'
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        WelcomePageComponent,
-        NavBarComponent,
-        PortfolioComponent,
-        AboutMeComponent,
-        PageTitleComponent,
-        ProjectCardComponent,
-        ProjectThumbnailComponent,
-        IconFadeOnHoverDirective
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        FontAwesomeModule,
-        HttpClientModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    WelcomePageComponent,
+    NavBarComponent,
+    PortfolioComponent,
+    AboutMeComponent,
+    PageTitleComponent,
+    ProjectCardComponent,
+    ProjectThumbnailComponent,
+    IconFadeOnHoverDirective
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FontAwesomeModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

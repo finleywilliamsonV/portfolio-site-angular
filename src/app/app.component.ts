@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { OpenGraphService } from './open-graph.service';
+import { Component } from '@angular/core'
+import { OpenGraphService } from './open-graph.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'portfolio-site-angular';
+  title = 'portfolio-site-angular'
 
   constructor(openGraphService: OpenGraphService) {
-    openGraphService.addMetaTags('root');
+    openGraphService.addMetaTags('root')
   }
 }

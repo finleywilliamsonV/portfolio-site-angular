@@ -4,7 +4,7 @@
 $primary: colors.$main-purple;
 
 .fill-height {
-    height: 100%;
+  height: 100%;
 }
 
 /* Importing Bootstrap SCSS file. */
@@ -13,9 +13,9 @@ $primary: colors.$main-purple;
 /* Adding these after Bootstrap import so they overwrite default bootstrap styles */
 
 * {
-    font-family: Montserrat, Helvetica;
+  font-family: Montserrat, Helvetica;
 }
 
 body {
-    background: black;
+  background: black;
 }
