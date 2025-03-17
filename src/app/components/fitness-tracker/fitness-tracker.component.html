@@ -6,14 +6,26 @@
     <!-- select and info -->
     <div class="select-and-info-container default-row gap-3">
       <div class="select-container flex-grow-1">
-        <select class="form-select">
+        <select
+          class="form-select"
+          (change)="handleDayChange($event)">
           @for (workout of workoutData; track workout.day) {
-            <option [value]="workout.day">Day {{ workout.day }}</option>
+            @let _isRestDay = workout.isRestDay;
+            <option
+              [value]="workout.day"
+              [disabled]="_isRestDay">
+              Day {{ workout.day }}
+              @if (_isRestDay) {
+                <span> (Rest)</span>
+              }
+            </option>
           }
         </select>
       </div>
       <!-- info button -->
-      <div class="info-button flex-full-center cursor-pointer">
+      <div
+        class="info-button flex-full-center cursor-pointer"
+        (click)="openInfoModal()">
         <fa-icon
           [icon]="infoIcon"
           size="lg">
@@ -74,7 +86,8 @@
       <div
         class="name-and-timer-container default-column py-3 border border-2"
         [ngClass]="{
-          'text-warning border-warning': isCurrentRoundTransition()
+          'text-warning border-warning': isCurrentRoundTransition(),
+          'text-success border-success': isCurrentRoundRest()
         }">
         <!-- current exercise container -->
         <div class="default-row">
@@ -94,7 +107,8 @@
   @if (_nextExerciseName) {
     <div
       class="default-row justify-content-between gap-2"
-      [class.text-warning]="isOnLastExercise()">
+      [class.text-warning]="isOnLastExercise()"
+      [class.text-success]="isNextRoundRest()">
       <h3>Up Next:</h3>
       <h3 [innerHTML]="_nextExerciseName"></h3>
     </div>
@@ -130,12 +144,12 @@
   <div class="default-row justify-content-between">
     <h2>Reset:</h2>
     <div class="reset-button-container default-row gap-2">
-      <!-- reset day button -->
+      <!-- reset exercise button -->
       <button
         type="button"
         class="btn btn-outline-light w-100"
-        (click)="handleResetDayPress()">
-        Day
+        (click)="handleResetExercisePress()">
+        Exercise
       </button>
       <!-- reset round button -->
       <button
@@ -144,12 +158,12 @@
         (click)="handleResetRoundPress()">
         Round
       </button>
-      <!-- reset exercise button -->
+      <!-- reset day button -->
       <button
         type="button"
         class="btn btn-outline-light w-100"
-        (click)="handleResetExercisePress()">
-        Exercise
+        (click)="handleResetDayPress()">
+        Day
       </button>
     </div>
   </div>

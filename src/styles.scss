@@ -1,9 +1,11 @@
-@use './styles/colors.scss';
 @use 'bootstrap/scss/bootstrap';
+@use './styles/colors.scss';
 @use './styles/reset.scss';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;800&display=swap');
 
-$primary: colors.$main-purple;
+$theme-colors: (
+  'success': red
+);
 
 .fill-height {
   height: 100%;
@@ -40,4 +42,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.modal-content {
+  --bs-modal-color: black;
+  --bs-modal-bg: white;
 }

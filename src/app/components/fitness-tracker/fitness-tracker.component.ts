@@ -3,9 +3,10 @@ import { Component, computed, effect, signal } from '@angular/core'
 import { toObservable } from '@angular/core/rxjs-interop'
 import { FaIconComponent } from '@fortawesome/angular-fontawesome'
 import { faArrowRotateLeft, faInfo } from '@fortawesome/free-solid-svg-icons'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { filter, interval, map, takeWhile } from 'rxjs'
+import { FitnessInfoModalComponent } from './fitness-info-modal/fitness-info-modal.component'
 import { Exercise, MASTER_WORKOUT_DATA } from './fitness-tracker.model'
-
 enum TrackerState {
   STARTED,
   STOPPED
@@ -17,12 +18,20 @@ const getTransitionObject = (
 ): Exercise => ({
   name: transitionTo,
   duration_sec,
-  isTransition: true
+  isTransition: true,
+  isRest: false
+})
+
+const getRestObject = (duration_sec: number): Exercise => ({
+  name: 'Rest',
+  duration_sec,
+  isTransition: false,
+  isRest: true
 })
 
 const TRANSITION_TIMES_SEC = [0, 5, 10] as const
 
-const TICK_TIME_MS = 100
+const TICK_TIME_MS = 20
 
 type TransitionTime_sec = (typeof TRANSITION_TIMES_SEC)[number]
 
@@ -47,12 +56,11 @@ export class FitnessTrackerComponent {
     if (!workout) {
       throw new Error('Index out of bounds in `currentWorkout`')
     }
-    console.log('current workout:', workout)
     return workout
   })
 
-  protected readonly exerciseStack = computed<Exercise[]>(() =>
-    this.currentWorkout().exercises.reduce((agg, curr) => {
+  protected readonly exerciseStack = computed<Exercise[]>(() => {
+    const stack = this.currentWorkout().exercises.reduce((agg, curr) => {
       const _selectedTime = this.selectedTransitionTime()
 
       if (_selectedTime > 0) {
@@ -62,7 +70,10 @@ export class FitnessTrackerComponent {
       agg.push(curr)
       return agg
     }, [] as Exercise[])
-  )
+
+    stack.push(getRestObject(this.currentWorkout().restAfterSet_sec))
+    return stack
+  })
 
   protected readonly currentRound = signal(1)
   protected readonly currentExerciseIndex = signal(0)
@@ -88,11 +99,17 @@ export class FitnessTrackerComponent {
   protected readonly isCurrentRoundTransition = computed(
     () => this.currentExercise()?.isTransition
   )
+  protected readonly isCurrentRoundRest = computed(
+    () => this.currentExercise()?.isRest
+  )
   protected readonly isOnLastExercise = computed(
     () => this.currentExerciseIndex() === this.exerciseStack().length - 1
   )
   protected readonly isNextRoundTransition = computed(
     () => this.nextExercise()?.isTransition
+  )
+  protected readonly isNextRoundRest = computed(
+    () => this.nextExercise()?.isRest
   )
 
   protected readonly nextExerciseName = computed(() =>
@@ -116,7 +133,7 @@ export class FitnessTrackerComponent {
       this.currentExerciseTimeRemaining() <= 0
   )
 
-  constructor() {
+  constructor(private modalService: NgbModal) {
     effect(() => {
       console.log(this.exerciseStack())
     })
@@ -158,10 +175,21 @@ export class FitnessTrackerComponent {
          */
         if (!currentExerciseAfterIncremement) {
           this.currentRound.update(val => val + 1)
-          console.log('setting current exercise index to 0')
           this.currentExerciseIndex.set(0)
         }
       })
+  }
+
+  openInfoModal = (): void => {
+    const modalRef = this.modalService.open(FitnessInfoModalComponent, {
+      centered: true
+    })
+    modalRef.componentInstance.workoutDay = this.currentWorkout()
+  }
+
+  handleDayChange = (event: Event): void => {
+    const target = event.target as HTMLSelectElement
+    this.selectedDay.set(+target.value - 1)
   }
 
   handleStartPress = (): void => {
@@ -169,10 +197,12 @@ export class FitnessTrackerComponent {
     this.startCountdown()
   }
 
-  handleResetDayPress = (): void => {
+  handleStopPress = (): void => {
     this.currentState.set(TrackerState.STOPPED)
-    this.currentRound.set(1)
-    this.currentExerciseIndex.set(0)
+  }
+
+  handleResetExercisePress = (): void => {
+    this.currentState.set(TrackerState.STOPPED)
     this.timeElapsed.set(0)
   }
 
@@ -182,12 +212,10 @@ export class FitnessTrackerComponent {
     this.timeElapsed.set(0)
   }
 
-  handleResetExercisePress = (): void => {
+  handleResetDayPress = (): void => {
     this.currentState.set(TrackerState.STOPPED)
+    this.currentRound.set(1)
+    this.currentExerciseIndex.set(0)
     this.timeElapsed.set(0)
-  }
-
-  handleStopPress = (): void => {
-    this.currentState.set(TrackerState.STOPPED)
   }
 }
