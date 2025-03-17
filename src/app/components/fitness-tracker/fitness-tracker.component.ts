@@ -113,12 +113,14 @@ export class FitnessTrackerComponent {
   )
 
   protected readonly nextExerciseName = computed(() =>
-    this.isOnLastExercise()
-      ? `Round ${this.currentRound() + 1}`
-      : this.nextExercise()?.name
+    this.isOnLastRound() && this.isOnLastExercise()
+      ? 'DONE'
+      : this.isOnLastExercise()
+        ? `Round ${this.currentRound() + 1}`
+        : this.nextExercise()?.name
   )
 
-  protected readonly isLastRound = computed(
+  protected readonly isOnLastRound = computed(
     () => this.currentRound() === this.currentWorkout().repetitions
   )
 
@@ -128,14 +130,23 @@ export class FitnessTrackerComponent {
 
   protected readonly isDoneWithExercises = computed(
     () =>
-      this.isLastRound() &&
+      this.isOnLastRound() &&
       this.isLastExercise() &&
       this.currentExerciseTimeRemaining() <= 0
   )
 
+  protected readonly isWorkoutStarted = computed(
+    () =>
+      this.currentExerciseIndex() > 0 ||
+      this.timeElapsed() > 0 ||
+      this.currentRound() > 1
+  )
+
   constructor(private modalService: NgbModal) {
     effect(() => {
-      console.log(this.exerciseStack())
+      if (this.isDoneWithExercises()) {
+        this.currentState.set(TrackerState.STOPPED)
+      }
     })
   }
 
@@ -160,7 +171,7 @@ export class FitnessTrackerComponent {
 
         // if not the last round, increment the stack index
         if (
-          !(this.isLastRound() && this.isLastExercise()) &&
+          !(this.isOnLastRound() && this.isLastExercise()) &&
           this.currentExerciseTimeRemaining() === 0
         ) {
           this.currentExerciseIndex.update(val => val + 1)
@@ -190,6 +201,9 @@ export class FitnessTrackerComponent {
   handleDayChange = (event: Event): void => {
     const target = event.target as HTMLSelectElement
     this.selectedDay.set(+target.value - 1)
+    this.currentRound.set(1)
+    this.currentExerciseIndex.set(0)
+    this.timeElapsed.set(0)
   }
 
   handleStartPress = (): void => {
