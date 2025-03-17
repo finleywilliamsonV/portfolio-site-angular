@@ -1,4 +1,17 @@
-:host {
-  height: 100%;
-  width: 100%;
+.fitness-tracker-container {
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.select-and-info-container {
+  .info-button {
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+.countdown-timer {
+  font-size: 10rem;
 }

@@ -1,6 +1,92 @@
-<div
-  class="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
-  <h1>HEEY I"M A FITNESS TRACKER</h1>
+<div class="fitness-tracker-container w-100 h-100 d-flex flex-column">
+  <!-- "today's workout" container -->
+  <div class="w-100 flex-full-center flex-column gap-1">
+    <h3>TODAY'S WORKOUT:</h3>
 
-  <app-stopwatch></app-stopwatch>
+    <!-- select and info -->
+    <div class="select-and-info-container w-100 flex-full-center gap-3">
+      <div class="select-container flex-grow-1">
+        <select class="form-select">
+          @for (workout of workoutData; track workout.day) {
+            <option [value]="workout.day">Day {{ workout.day }}</option>
+          }
+        </select>
+      </div>
+      <!-- info button -->
+      <div class="info-button flex-full-center cursor-pointer">
+        <fa-icon
+          [icon]="infoIcon"
+          size="lg">
+        </fa-icon>
+      </div>
+    </div>
+  </div>
+
+  <!-- round counter container -->
+  <div class="w-100 flex-full-center flex-column">
+    <!-- round counter -->
+    @if (currentWorkout().isRestDay) {
+      <h1>
+        ROUND {{ currentRound() }} OF
+        {{ currentWorkout().repetitions }}
+      </h1>
+    }
+  </div>
+
+  <!-- current exercise container -->
+  <div class="w-100 flex-full-center flex-column gap-1">
+    <h1>{{ currentExercise().name | titlecase }}</h1>
+  </div>
+
+  <!-- countdown timer container -->
+  <div class="w-100 flex-full-center flex-column gap-1">
+    <h1 class="countdown-timer">{{ currentExercise().duration_sec }}</h1>
+  </div>
+
+  <!-- up next container -->
+  @let _nextExercise = nextExercise();
+  @if (_nextExercise) {
+    <div class="w-100 flex-full-center flex-column gap-1">
+      <h1>Up Next:</h1>
+      <h1>{{ _nextExercise.name | titlecase }}</h1>
+    </div>
+  }
+
+  <!-- transition time container -->
+  <div class="transition-time-container w-100 flex-full-center gap-3">
+    @for (timeOption of TransitionTimes; track $index) {
+      <div
+        class="transition-time-button-container"
+        (click)="selectedTransitionTime.set(timeOption)">
+        @let selectedMatchesOption = selectedTransitionTime() === timeOption;
+        @let colorClass = selectedMatchesOption ? 'light' : 'dark';
+        <button
+          type="button"
+          class="btn btn-{{ colorClass }} w-100">
+          {{ timeOption }} sec
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- start/stop/reset container -->
+  <div class="action-buttons-container w-100 flex-full-center">
+    <!-- start button -->
+    @if (currentState() === TrackerState.STOPPED) {
+      <button
+        type="button"
+        class="btn btn-success btn-lg w-100"
+        (click)="handleStartPress()">
+        START
+      </button>
+    } @else {
+      <!-- stop button -->
+      <button
+        type="button"
+        class="btn btn-danger btn-lg w-100"
+        (click)="handleStopPress()">
+        STOP
+      </button>
+    }
+  </div>
 </div>
