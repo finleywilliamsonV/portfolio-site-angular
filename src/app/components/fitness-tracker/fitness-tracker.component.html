@@ -1,10 +1,10 @@
 <div class="fitness-tracker-container w-100 h-100 d-flex flex-column">
   <!-- "today's workout" container -->
-  <div class="w-100 flex-full-center flex-column gap-1">
+  <div class="default-column">
     <h3>TODAY'S WORKOUT:</h3>
 
     <!-- select and info -->
-    <div class="select-and-info-container w-100 flex-full-center gap-3">
+    <div class="select-and-info-container default-row gap-3">
       <div class="select-container flex-grow-1">
         <select class="form-select">
           @for (workout of workoutData; track workout.day) {
@@ -22,71 +22,135 @@
     </div>
   </div>
 
+  <div class="reset-and-transition-container">
+    <!-- transition time container -->
+    <div class="transition-time-container w-100 flex-full-center gap-2">
+      <div class="d-flex flex-grow-1"><h3>Transition Time:</h3></div>
+      <div class="d-flex w-100 gap-3 flex-0">
+        @for (timeOption of TransitionTimes; track $index) {
+          <div
+            class="transition-time-button-container"
+            (click)="selectedTransitionTime.set(timeOption)">
+            @let selectedMatchesOption =
+              selectedTransitionTime() === timeOption;
+            @let colorClass = selectedMatchesOption ? 'light' : 'dark';
+            <button
+              type="button"
+              class="btn btn-{{ colorClass }} w-100">
+              {{ timeOption }}
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
   <!-- round counter container -->
-  <div class="w-100 flex-full-center flex-column">
+  <div class="round-counter-container default-column p-2 border">
     <!-- round counter -->
-    @if (currentWorkout().isRestDay) {
-      <h1>
+    @if (!currentWorkout().isRestDay) {
+      <h2>
         ROUND {{ currentRound() }} OF
         {{ currentWorkout().repetitions }}
-      </h1>
+      </h2>
     }
   </div>
 
-  <!-- current exercise container -->
-  <div class="w-100 flex-full-center flex-column gap-1">
-    <h1>{{ currentExercise().name | titlecase }}</h1>
-  </div>
+  <!-- main exercise container -->
+  <div class="main-exercise-container default-column gap-3">
+    <!-- transition to container -->
 
-  <!-- countdown timer container -->
-  <div class="w-100 flex-full-center flex-column gap-1">
-    <h1 class="countdown-timer">{{ currentExercise().duration_sec }}</h1>
-  </div>
-
-  <!-- up next container -->
-  @let _nextExercise = nextExercise();
-  @if (_nextExercise) {
-    <div class="w-100 flex-full-center flex-column gap-1">
-      <h1>Up Next:</h1>
-      <h1>{{ _nextExercise.name | titlecase }}</h1>
+    <div
+      class="transition-to-container default-column text-warning"
+      [class.visibility-hidden]="!isCurrentRoundTransition()">
+      <div class="default-column">
+        <h3>Transition to:</h3>
+      </div>
     </div>
-  }
 
-  <!-- transition time container -->
-  <div class="transition-time-container w-100 flex-full-center gap-3">
-    @for (timeOption of TransitionTimes; track $index) {
+    @let _currentExercise = currentExercise();
+    @if (_currentExercise) {
+      <!-- name and timer container -->
       <div
-        class="transition-time-button-container"
-        (click)="selectedTransitionTime.set(timeOption)">
-        @let selectedMatchesOption = selectedTransitionTime() === timeOption;
-        @let colorClass = selectedMatchesOption ? 'light' : 'dark';
-        <button
-          type="button"
-          class="btn btn-{{ colorClass }} w-100">
-          {{ timeOption }} sec
-        </button>
+        class="name-and-timer-container default-column py-3 border border-2"
+        [ngClass]="{
+          'text-warning border-warning': isCurrentRoundTransition()
+        }">
+        <!-- current exercise container -->
+        <div class="default-row">
+          <h2>{{ _currentExercise.name }}</h2>
+        </div>
+
+        <!-- countdown timer container -->
+        <div class="default-row">
+          <h1 class="countdown-timer">{{ currentExerciseTimeRemaining() }}s</h1>
+        </div>
       </div>
     }
   </div>
 
+  <!-- up next container -->
+  @let _nextExerciseName = nextExerciseName();
+  @if (_nextExerciseName) {
+    <div
+      class="default-row justify-content-between gap-2"
+      [class.text-warning]="isOnLastExercise()">
+      <h3>Up Next:</h3>
+      <h3 [innerHTML]="_nextExerciseName"></h3>
+    </div>
+  }
+
   <!-- start/stop/reset container -->
-  <div class="action-buttons-container w-100 flex-full-center">
-    <!-- start button -->
-    @if (currentState() === TrackerState.STOPPED) {
+  <div class="action-buttons-container default-column gap-2">
+    <!-- start/stop buttons -->
+    <div class="start-stop-buttons-container default-row">
+      <!-- stopped-state buttons -->
+      @if (currentState() === TrackerState.STOPPED) {
+        <div class="default-column gap-2">
+          <!-- start button -->
+          <button
+            type="button"
+            class="btn btn-success btn-lg w-100"
+            (click)="handleStartPress()">
+            START
+          </button>
+        </div>
+      } @else {
+        <!-- stop button -->
+        <button
+          type="button"
+          class="btn btn-danger btn-lg w-100"
+          (click)="handleStopPress()">
+          STOP
+        </button>
+      }
+    </div>
+  </div>
+  <!-- reset buttons -->
+  <div class="default-row justify-content-between">
+    <h2>Reset:</h2>
+    <div class="reset-button-container default-row gap-2">
+      <!-- reset day button -->
       <button
         type="button"
-        class="btn btn-success btn-lg w-100"
-        (click)="handleStartPress()">
-        START
+        class="btn btn-outline-light w-100"
+        (click)="handleResetDayPress()">
+        Day
       </button>
-    } @else {
-      <!-- stop button -->
+      <!-- reset round button -->
       <button
         type="button"
-        class="btn btn-danger btn-lg w-100"
-        (click)="handleStopPress()">
-        STOP
+        class="btn btn-outline-light w-100"
+        (click)="handleResetRoundPress()">
+        Round
       </button>
-    }
+      <!-- reset exercise button -->
+      <button
+        type="button"
+        class="btn btn-outline-light w-100"
+        (click)="handleResetExercisePress()">
+        Exercise
+      </button>
+    </div>
   </div>
 </div>

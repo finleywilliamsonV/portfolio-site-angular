@@ -36,7 +36,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
       }
     ],
     restAfterExercise_sec: 60,
-    repetitions: 5
+    repetitions: 3
   },
   {
     day: 2,

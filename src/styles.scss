@@ -1,12 +1,20 @@
 @use './styles/colors.scss';
-@use './styles/reset.scss';
 @use 'bootstrap/scss/bootstrap';
+@use './styles/reset.scss';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;800&display=swap');
 
 $primary: colors.$main-purple;
 
 .fill-height {
   height: 100%;
+}
+
+.flex-0 {
+  flex: 0;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 /* Adding these after Bootstrap import so they overwrite default bootstrap styles */
