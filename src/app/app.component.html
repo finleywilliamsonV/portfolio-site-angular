@@ -1,5 +1,9 @@
-<app-nav-bar></app-nav-bar>
+<div class="h-100 d-flex flex-column">
+  @if (showNavbar$ | async) {
+    <app-nav-bar></app-nav-bar>
+  }
 
-<div class="container-fluid content-container">
+  <div class="container-fluid flex-grow-1">
     <router-outlet></router-outlet>
+  </div>
 </div>

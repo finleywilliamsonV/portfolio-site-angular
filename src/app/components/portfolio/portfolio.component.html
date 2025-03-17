@@ -1,7 +1,11 @@
-<app-page-title title="Portfolio"></app-page-title>
+<div class="default-margin-padding">
+  <app-page-title title="Portfolio"></app-page-title>
 
-<div class="row">
-    <div *ngFor="let project of projects" class="col-12 col-md-6 col-xl-4 vertical-padding">
-        <app-project-thumbnail [project]="project"></app-project-thumbnail>
+  <div class="row">
+    <div
+      *ngFor="let project of projects"
+      class="col-12 col-md-6 col-xl-4 vertical-padding">
+      <app-project-thumbnail [project]="project"></app-project-thumbnail>
     </div>
+  </div>
 </div>

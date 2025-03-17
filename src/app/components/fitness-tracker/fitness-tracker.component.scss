@@ -1,0 +1,60 @@
+.default-column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.default-row {
+  @extend .default-column;
+  flex-direction: row;
+}
+
+.fitness-tracker-container {
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.select-and-info-container {
+  .info-button {
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.big-text {
+  font-size: 7rem;
+}
+
+.giant-text {
+  font-size: 7rem;
+}
+
+// /* Fix for hover state persisting on touch devices */
+// @media (hover: none) {
+//   /* Use -webkit-tap-highlight-color to control tap highlight */
+//   .btn {
+//     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+//   }
+
+//   /* Only target :hover that is not also :active */
+//   .btn:hover:not(:active) {
+//     background-color: inherit !important;
+//     color: inherit !important;
+//     border-color: inherit !important;
+//   }
+
+//   /* Specific fix for outline buttons */
+//   .btn-outline-light:hover:not(:active) {
+//     background-color: transparent !important;
+//     color: #f8f9fa !important;
+//   }
+// }

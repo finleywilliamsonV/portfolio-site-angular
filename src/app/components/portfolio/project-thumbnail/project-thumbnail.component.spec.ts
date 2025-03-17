@@ -8,9 +8,8 @@ describe('ProjectThumbnailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectThumbnailComponent ]
-    })
-    .compileComponents()
+      declarations: [ProjectThumbnailComponent]
+    }).compileComponents()
 
     fixture = TestBed.createComponent(ProjectThumbnailComponent)
     component = fixture.componentInstance

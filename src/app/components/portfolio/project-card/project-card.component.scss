@@ -1,57 +1,57 @@
 h1,
 p,
 fa-icon {
-    color: white;
+  color: white;
 }
 
-#x-icon-row{
-    margin-top: -25px;
+#x-icon-row {
+  margin-top: -25px;
 }
 
 #x-icon {
-    position: relative;
-    left: 35px;
-    top: -10px;
+  position: relative;
+  left: 35px;
+  top: -10px;
 }
 
 .slideshow-image {
-    width: 100%;
-    height: 100%
+  width: 100%;
+  height: 100%;
 }
 
 #modal-title {
-    font-size: 25px;
-    font-weight: 700;
-    font-style: bold;
+  font-size: 25px;
+  font-weight: 700;
+  font-style: bold;
 }
 
 #modal-tags {
-    font-weight: 500;
-    font-size: 18px
+  font-weight: 500;
+  font-size: 18px;
 }
 
 #modal-hr {
-    border: 1px solid white;
-    margin-top: 5px;
-    margin-bottom: 10px;
+  border: 1px solid white;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #modal-description {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 #link-button {
-    padding: 5px 0px;
-    font-size: 20px;
-    width: 80%;
+  padding: 5px 0px;
+  font-size: 20px;
+  width: 80%;
 }
 
 #github-button {
-    font-size: 23px;
+  font-size: 23px;
 }
 
 @media (max-width: 992px) {
-    #project-description {
-        margin-top: 24px;
-    }
+  #project-description {
+    margin-top: 24px;
+  }
 }

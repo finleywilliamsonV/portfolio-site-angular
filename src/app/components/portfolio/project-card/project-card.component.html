@@ -1,71 +1,68 @@
 <div class="card bg-dark p-5">
+  <div
+    *ngIf="isMobile"
+    id="x-icon-row"
+    class="row text-end">
+    <fa-icon
+      (click)="closeModal()"
+      id="x-icon"
+      appIconFadeOnHover="#926eff"
+      [icon]="xIcon"
+      size="xl">
+    </fa-icon>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-8 align-self-center justify-content-center">
+      <ngb-carousel *ngIf="imageUrls">
+        <ng-template
+          *ngFor="let url of imageUrls"
+          ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img
+              class="slideshow-image"
+              [src]="url" />
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
 
     <div
-        *ngIf="isMobile"
-        id="x-icon-row"
-        class="row text-end">
-        <fa-icon
-            (click)="closeModal()"
-            id="x-icon"
-            appIconFadeOnHover="#926eff"
-            [icon]="xIcon"
-            size="xl">
-        </fa-icon>
-    </div>
+      id="project-description"
+      class="col-12 col-lg-4 align-self-end">
+      <h1 id="modal-title">{{ project.title }}</h1>
+      <hr id="modal-hr" />
+      <p id="modal-tags">{{ project.tags.join(', ') }}</p>
 
-    <div class="row">
+      <p
+        id="modal-description"
+        class="mt-4">
+        {{ project.description }}
+      </p>
 
-        <div class="col-12 col-lg-8 align-self-center justify-content-center">
-            <ngb-carousel *ngIf="imageUrls">
-                <ng-template
-                    *ngFor="let url of imageUrls"
-                    ngbSlide>
-                    <div class="picsum-img-wrapper">
-                        <img
-                            class="slideshow-image"
-                            [src]="url">
-                    </div>
-                </ng-template>
-            </ngb-carousel>
+      <div class="row text-left mt-4">
+        <div class="col d-flex">
+          <button
+            id="link-button"
+            [disabled]="!project.url"
+            class="btn btn-outline-primary"
+            (click)="navigateToProjectUrl()">
+            {{ project.linkText }}
+          </button>
+          <a
+            *ngIf="project.githubLink"
+            id="github-button"
+            class="align-self-center ms-3"
+            [href]="project.githubLink"
+            target="_blank">
+            <fa-icon
+              appIconFadeOnHover="#926eff"
+              [icon]="githubIcon"
+              size="xl">
+            </fa-icon>
+          </a>
         </div>
-
-        <div
-            id="project-description"
-            class="col-12 col-lg-4 align-self-end">
-
-            <h1 id="modal-title">{{ project.title }}</h1>
-            <hr id="modal-hr">
-            <p id="modal-tags">{{ project.tags.join(', ') }}</p>
-
-            <p
-                id="modal-description"
-                class="mt-4">
-                {{ project.description }}
-            </p>
-
-            <div class="row text-left mt-4">
-                <div class="col d-flex">
-                    <button
-                        id="link-button"
-                        [disabled]="!project.url"
-                        class="btn btn-outline-primary"
-                        (click)="navigateToProjectUrl()">
-                        {{ project.linkText }}
-                    </button>
-                    <a
-                        *ngIf="project.githubLink"
-                        id="github-button"
-                        class="align-self-center ms-3"
-                        [href]="project.githubLink"
-                        target="_blank">
-                        <fa-icon
-                            appIconFadeOnHover="#926eff"
-                            [icon]="githubIcon"
-                            size="xl">
-                        </fa-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
