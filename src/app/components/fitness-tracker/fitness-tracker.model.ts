@@ -115,7 +115,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
     isRestDay: false,
     exercises: [
       {
-        name: 'Plank',
+        name: 'Knee Drives',
         duration_sec: 20,
         isTransition: false,
         isRest: false
@@ -127,7 +127,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
         isRest: false
       },
       {
-        name: 'Alternate Leg Lunges',
+        name: 'Down Ups',
         duration_sec: 20,
         isTransition: false,
         isRest: false
@@ -148,7 +148,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
     isRestDay: false,
     exercises: [
       {
-        name: 'Knee Drives',
+        name: 'Plank',
         duration_sec: 30,
         isTransition: false,
         isRest: false
@@ -159,7 +159,12 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
         isTransition: false,
         isRest: false
       },
-      { name: 'Down Ups', duration_sec: 30, isTransition: false, isRest: false }
+      {
+        name: 'Leg Lunges',
+        duration_sec: 30,
+        isTransition: false,
+        isRest: false
+      }
     ],
     restAfterSet_sec: 60,
     repetitions: 5
@@ -175,7 +180,12 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
     day: 11,
     isRestDay: false,
     exercises: [
-      { name: 'Plank', duration_sec: 30, isTransition: false, isRest: false },
+      {
+        name: 'Knee Drives',
+        duration_sec: 30,
+        isTransition: false,
+        isRest: false
+      },
       {
         name: 'Air Squats',
         duration_sec: 30,
@@ -183,14 +193,14 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
         isRest: false
       },
       {
-        name: 'Alternate Leg Lunges',
-        duration_sec: 45,
+        name: 'Down Ups',
+        duration_sec: 30,
         isTransition: false,
         isRest: false
       }
     ],
     restAfterSet_sec: 60,
-    repetitions: 6
+    repetitions: 5
   },
   {
     day: 12,
@@ -204,7 +214,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
     isRestDay: false,
     exercises: [
       {
-        name: 'Knee Drives',
+        name: 'Plank',
         duration_sec: 30,
         isTransition: false,
         isRest: false
@@ -250,7 +260,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
       },
       { name: 'Down Ups', duration_sec: 30, isTransition: false, isRest: false }
     ],
-    restAfterSet_sec: 45,
+    restAfterSet_sec: 60,
     repetitions: 6
   },
   {
@@ -278,7 +288,7 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
         isRest: false
       }
     ],
-    restAfterSet_sec: 0,
+    restAfterSet_sec: 15,
     repetitions: 3
   },
   {
@@ -456,7 +466,8 @@ export const MASTER_WORKOUT_DATA: WorkoutData = [
         duration_sec: 45,
         isTransition: false,
         isRest: false
-      }
+      },
+      { name: 'Down Ups', duration_sec: 45, isTransition: false, isRest: false }
     ],
     restAfterSet_sec: 15,
     repetitions: 3
