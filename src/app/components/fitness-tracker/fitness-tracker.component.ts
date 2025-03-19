@@ -51,12 +51,36 @@ export class FitnessTrackerComponent {
   protected readonly selectedDay = signal(0)
   protected readonly selectedTransitionTime = signal<TransitionTime_sec>(5)
 
+  protected readonly selectedRestAfterSet = signal<number | undefined>(
+    undefined
+  )
+  protected readonly restAfterSetOverrides = computed(() => {
+    const workout = this.currentWorkout()
+    if (!workout) {
+      throw new Error('Index out of bounds in `currentWorkout`')
+    }
+
+    const divisions = 3
+    const overrideInterval = workout.restAfterSet_sec / divisions
+    return Array.from({ length: divisions + 1 }, (_, i) =>
+      Math.floor(overrideInterval * i)
+    )
+  })
+
   protected readonly currentWorkout = computed(() => {
     const workout = this.workoutData[this.selectedDay()]
     if (!workout) {
       throw new Error('Index out of bounds in `currentWorkout`')
     }
     return workout
+  })
+
+  protected readonly finalRestAfterSet = computed(() => {
+    const workout = this.currentWorkout()
+    if (!workout) {
+      throw new Error('Index out of bounds in `currentWorkout`')
+    }
+    return this.selectedRestAfterSet() ?? workout.restAfterSet_sec
   })
 
   protected readonly exerciseStack = computed<Exercise[]>(() => {
@@ -71,9 +95,8 @@ export class FitnessTrackerComponent {
       return agg
     }, [] as Exercise[])
 
-    const restAfterSet = this.currentWorkout().restAfterSet_sec
-    if (restAfterSet > 0) {
-      stack.push(getRestObject(restAfterSet))
+    if (this.finalRestAfterSet() > 0) {
+      stack.push(getRestObject(this.finalRestAfterSet()))
     }
     return stack
   })
@@ -235,5 +258,11 @@ export class FitnessTrackerComponent {
     this.currentRound.set(1)
     this.currentExerciseIndex.set(0)
     this.timeElapsed.set(0)
+  }
+
+  handleSkipRestPress = (): void => {
+    if (this.isCurrentRoundRest()) {
+      this.timeElapsed.set(this.finalRestAfterSet())
+    }
   }
 }

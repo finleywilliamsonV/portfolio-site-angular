@@ -36,7 +36,8 @@
   </div>
 
   @if (!isDoneWithExercises()) {
-    <div class="reset-and-transition-container">
+    <div
+      class="transition-and-rest-container w-100 flex-full-center flex-column gap-2">
       <!-- transition time container -->
       <div class="transition-time-container w-100 flex-full-center gap-2">
         <div class="d-flex flex-grow-1"><p>Transition Time:</p></div>
@@ -52,8 +53,33 @@
               <button
                 type="button"
                 [disabled]="isWorkoutStarted()"
-                class="btn btn-{{ colorClass }} w-100">
+                class="btn btn-{{ colorClass }} btn-sm w-100">
                 {{ timeOption }}s
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- rest after set override container -->
+      <div
+        class="rest-after-set-override-container w-100 flex-full-center gap-2">
+        <div class="d-flex flex-grow-1"><p>Rest After Set:</p></div>
+        <div class="d-flex w-100 gap-2 flex-0">
+          @for (override of restAfterSetOverrides(); track $index) {
+            <div
+              class="transition-time-button-container"
+              (click)="selectedRestAfterSet.set(override)">
+              @let selectedMatchesOption =
+                selectedRestAfterSet() === override ||
+                (selectedRestAfterSet() === undefined && $last);
+              @let colorClass =
+                selectedMatchesOption ? 'light' : 'outline-light';
+              <button
+                type="button"
+                [disabled]="isWorkoutStarted()"
+                class="btn btn-{{ colorClass }} btn-sm w-100">
+                {{ override }}s
               </button>
             </div>
           }
@@ -89,13 +115,18 @@
 
     @let _currentExercise = currentExercise();
     @if (_currentExercise && !isDoneWithExercises()) {
-      <!-- name and timer container -->
-      <div
-        class="name-and-timer-container default-column py-3 border border-2"
+      <!-- exercise name and timer button -->
+      <button
+        type="button"
+        class="btn btn-outline-light default-column btn-sm border-2 w-100 py-3 override-button-disabled"
+        [disabled]="!isCurrentRoundRest()"
         [ngClass]="{
-          'text-warning border-warning': isCurrentRoundTransition(),
-          'text-success border-success': isCurrentRoundRest()
-        }">
+          'text-warning border-warning btn-outline-warning':
+            isCurrentRoundTransition(),
+          'text-success border-success btn-outline-success':
+            isCurrentRoundRest()
+        }"
+        (click)="handleSkipRestPress()">
         <!-- current exercise container -->
         <div class="default-row">
           <h2>{{ _currentExercise.name }}</h2>
@@ -105,9 +136,10 @@
         <div class="default-row">
           <h1 class="giant-text">{{ currentExerciseTimeRemaining() }}s</h1>
         </div>
-      </div>
+      </button>
     } @else {
-      <h1 class="big-text text-success">DONE</h1>
+      <img src="https://c.tenor.com/BnVNJtJR29sAAAAd/tenor.gif" />
+      <h1 class="big-text text-success">DONE!</h1>
     }
   </div>
 
