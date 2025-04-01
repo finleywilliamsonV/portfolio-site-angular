@@ -1,23 +1,32 @@
-@if (workoutDay) {
+@let _workoutDay = workoutDay ? workoutDay() : undefined;
+@let _totalExpectedTime_string = totalExpectedTime_string();
+
+@if (_workoutDay) {
   <div class="modal-container">
     <div class="modal-header">
-      <h4 class="modal-title">Day {{ workoutDay.day }}</h4>
+      <h4 class="modal-title">Day {{ _workoutDay.day }}</h4>
     </div>
     <div class="modal-body">
       <h5>Set Info:</h5>
       <ul class="set-info">
-        @for (exercise of workoutDay.exercises; track exercise.name) {
+        @for (exercise of _workoutDay.exercises; track exercise.name) {
           <li>{{ exercise.name }} - {{ exercise.duration_sec }}s</li>
         }
       </ul>
       <h5>Rest After Each Set:</h5>
       <ul>
-        <li>{{ workoutDay.restAfterSet_sec }}s</li>
+        <li>{{ _workoutDay.restAfterSet_sec }}s</li>
       </ul>
       <h5>Total Repetitions:</h5>
       <ul>
-        <li>{{ workoutDay.repetitions }}</li>
+        <li>{{ _workoutDay.repetitions }}</li>
       </ul>
+      @if (_totalExpectedTime_string) {
+        <h5>Total Expected Time:</h5>
+        <ul>
+          <li>{{ _totalExpectedTime_string }}</li>
+        </ul>
+      }
     </div>
   </div>
 } @else {

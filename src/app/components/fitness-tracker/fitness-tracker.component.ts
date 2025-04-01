@@ -29,7 +29,7 @@ const getRestObject = (duration_sec: number): Exercise => ({
   isRest: true
 })
 
-const TRANSITION_TIMES_SEC = [0, 5, 10] as const
+const TRANSITION_TIMES_SEC = [0, 3, 5] as const
 
 const TICK_TIME_MS = 1000
 
@@ -100,6 +100,13 @@ export class FitnessTrackerComponent {
     }
     return stack
   })
+
+  protected readonly totalExpectedTime_sec = computed(
+    () =>
+      this.exerciseStack().reduce((agg, curr) => {
+        return agg + curr.duration_sec
+      }, 0) * this.currentWorkout().repetitions
+  )
 
   protected readonly currentRound = signal(1)
   protected readonly currentExerciseIndex = signal(0)
@@ -221,7 +228,11 @@ export class FitnessTrackerComponent {
     const modalRef = this.modalService.open(FitnessInfoModalComponent, {
       centered: true
     })
-    modalRef.componentInstance.workoutDay = this.currentWorkout()
+    const componentInstance: FitnessInfoModalComponent =
+      modalRef.componentInstance
+
+    componentInstance.workoutDay = this.currentWorkout
+    componentInstance.totalExpectedTime_sec = this.totalExpectedTime_sec
   }
 
   handleDayChange = (event: Event): void => {
